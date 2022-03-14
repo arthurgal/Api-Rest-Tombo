@@ -1,14 +1,19 @@
 package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class EquipamentoDto {
 
     private Long id;
+    @NotNull @NotEmpty
     private String nome;
+    @NotNull @NotEmpty @Length(min = 6, max = 6)
     private String tombo;
 
     public EquipamentoDto(Equipamento e){
