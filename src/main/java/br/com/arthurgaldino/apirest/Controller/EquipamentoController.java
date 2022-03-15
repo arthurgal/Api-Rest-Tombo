@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -27,9 +29,13 @@ public class EquipamentoController {
     }
 
     @PostMapping
-    public void criaEquipamento(@RequestBody @Valid EquipamentoFrom form){
+    public ResponseEntity<EquipamentoDto> cadastraEquipamento(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
         var equipamento = form.converte();
         equipamentoRepository.save(equipamento);
+
+        URI uri = uriBuilder.path("topico/{id}").buildAndExpand(equipamento.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new EquipamentoDto(equipamento));
     }
 
     @PutMapping("/{id}")
@@ -42,7 +48,7 @@ public class EquipamentoController {
 
     }
     @GetMapping("/{id}")
-    public EquipamentoDto detalharEquipamento(@PathVariable Long id){
+    public EquipamentoDto detalhaEquipamento(@PathVariable Long id){
         var equipamento = equipamentoRepository.getById(id);
         return new EquipamentoDto(equipamento);
     }
