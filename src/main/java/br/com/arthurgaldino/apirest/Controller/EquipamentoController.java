@@ -24,12 +24,13 @@ public class EquipamentoController {
 
     @GetMapping
     public List<EquipamentoDto> listaEquipamentos(){
-
         var equipamentos = equipamentoRepository.findAll();
         return EquipamentoDto.converte(equipamentos);
     }
 
+
     @PostMapping
+    @Transactional
     public ResponseEntity<EquipamentoDto> cadastraEquipamento(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
         var equipamento = form.converte();
         equipamentoRepository.save(equipamento);
@@ -38,6 +39,7 @@ public class EquipamentoController {
 
         return ResponseEntity.created(uri).body(new EquipamentoDto(equipamento));
     }
+
 
     @PutMapping("/{id}")
     @Transactional
@@ -48,15 +50,37 @@ public class EquipamentoController {
         return ResponseEntity.ok(new EquipamentoDto(equipamento));
 
     }
-    @GetMapping("/{id}")
-    public EquipamentoDto detalhaEquipamento(@PathVariable Long id){
-        var equipamento = equipamentoRepository.getById(id);
-        return new EquipamentoDto(equipamento);
+
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable Long id){
+        var equipamento = equipamentoRepository.findById(id);
+        if(equipamento.isPresent()){
+            return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
+        }
+        return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/tombo/{tombo}")
+    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable String tombo){
+        var equipamento = equipamentoRepository.findByTombo(tombo);
+        if(equipamento.isPresent()){
+            return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<?> deletaEquipamento(@PathVariable Long id){
-        equipamentoRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+        var equipamento = equipamentoRepository.findById(id);
+        if(equipamento.isPresent()){
+            equipamentoRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+
 
     }
 }

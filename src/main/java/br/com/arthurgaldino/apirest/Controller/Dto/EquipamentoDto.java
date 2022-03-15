@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class EquipamentoDto {
@@ -22,7 +23,7 @@ public class EquipamentoDto {
         this.tombo = e.getTombo();
     }
 
-    public EquipamentoDto() {
+    public EquipamentoDto(Optional<Equipamento> equipamento) {
     }
 
     public static List<EquipamentoDto> converte(List<Equipamento> equipamentos) {
