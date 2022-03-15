@@ -3,6 +3,7 @@ package br.com.arthurgaldino.apirest.Controller;
 import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaEquipamento;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoFrom;
+import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,5 +52,11 @@ public class EquipamentoController {
     public EquipamentoDto detalhaEquipamento(@PathVariable Long id){
         var equipamento = equipamentoRepository.getById(id);
         return new EquipamentoDto(equipamento);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletaEquipamento(@PathVariable Long id){
+        equipamentoRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+
     }
 }
