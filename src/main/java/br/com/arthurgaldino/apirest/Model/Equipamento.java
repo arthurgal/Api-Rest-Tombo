@@ -13,14 +13,20 @@ public class Equipamento {
     private String nome;
     @Column(name = "tombo")
     private String tombo;
+    @Column(name = "setor") @Enumerated(EnumType.STRING)
+    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+    @Column (name = "status") @Enumerated(EnumType.STRING)
+    private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
 
     public Equipamento(){
 
     }
 
-    public Equipamento(String nome, String tombo) {
+    public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status) {
         this.nome = nome;
         this.tombo = tombo;
+        this.setor = setor;
+        this.status = status;
     }
 
     public Long getId() {
@@ -45,5 +51,21 @@ public class Equipamento {
 
     public void setTombo(String tombo) {
         this.tombo = tombo;
+    }
+
+    public SetorEquipamento getSetor() {
+        return setor;
+    }
+
+    public void setSetor(SetorEquipamento setor) {
+        this.setor = setor;
+    }
+
+    public StatusEquipamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEquipamento status) {
+        this.status = status;
     }
 }

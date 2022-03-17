@@ -1,6 +1,8 @@
 package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
+import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
+import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
@@ -12,6 +14,8 @@ public class EquipamentoFrom {
     private String nome;
     @NotNull @NotEmpty @Length(min = 6, max = 6)
     private String tombo;
+    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+    private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
 
     public String getNome() {
         return nome;
@@ -30,6 +34,6 @@ public class EquipamentoFrom {
     }
 
     public Equipamento converte() {
-        return new Equipamento(nome, tombo);
+        return new Equipamento(nome, tombo, setor, status);
     }
 }
