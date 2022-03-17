@@ -1,5 +1,7 @@
 package br.com.arthurgaldino.apirest.Model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,12 +11,16 @@ public class Equipamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "nome")
     private String nome;
-    @Column(name = "tombo")
+
+    @Column(name = "tombo") @Length(min = 6, max = 6)
     private String tombo;
+
     @Column(name = "setor") @Enumerated(EnumType.STRING)
     private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+
     @Column (name = "status") @Enumerated(EnumType.STRING)
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
 
