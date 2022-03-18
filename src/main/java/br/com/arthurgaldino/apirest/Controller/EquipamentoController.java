@@ -32,6 +32,13 @@ public class EquipamentoController {
     @PostMapping
     @Transactional
     public ResponseEntity<EquipamentoDto> cadastraEquipamento(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
+
+        //Validando se o tombo já existe
+        var equipamentoDto = equipamentoRepository.findByTombo(form.getTombo());
+        if(equipamentoDto != null){
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        //tombo não existe, então prosseguir com o cadastro do equipamento
         var equipamento = form.converte();
         equipamentoRepository.save(equipamento);
 
