@@ -1,12 +1,17 @@
 package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
+import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
+import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 
 public class AtualizaEquipamento {
 
     private String nome;
     private String tombo;
+    //não é boa pratica ter esse tipo de atributo em uma DTO
+    private SetorEquipamento setor;
+    private StatusEquipamento status;
 
     public String getNome() {
         return nome;
@@ -24,10 +29,28 @@ public class AtualizaEquipamento {
         this.tombo = tombo;
     }
 
+    public SetorEquipamento getSetor() {
+        return setor;
+    }
+
+    public void setSetor(SetorEquipamento setor) {
+        this.setor = setor;
+    }
+
+    public StatusEquipamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEquipamento status) {
+        this.status = status;
+    }
+
     public Equipamento atualiza(Long id, EquipamentoRepository equipamentoRepository) {
         Equipamento equipamento = equipamentoRepository.getById(id);
         equipamento.setNome(this.nome);
         equipamento.setTombo(this.tombo);
+        equipamento.setSetor(this.setor);
+        equipamento.setStatus(this.status);
 
         return equipamento;
 

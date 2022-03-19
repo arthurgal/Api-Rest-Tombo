@@ -18,8 +18,8 @@ public class EquipamentoDto {
     private String nome;
     @NotNull @NotEmpty @Length(min = 6, max = 6)
     private String tombo;
-    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
-    private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
+    private SetorEquipamento setor;
+    private StatusEquipamento status;
 
     public EquipamentoDto(Equipamento e){
         this.id = e.getId();

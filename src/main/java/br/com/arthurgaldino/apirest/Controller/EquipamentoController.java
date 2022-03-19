@@ -4,6 +4,7 @@ import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaEquipamento;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoFrom;
 import br.com.arthurgaldino.apirest.Model.Equipamento;
+import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
