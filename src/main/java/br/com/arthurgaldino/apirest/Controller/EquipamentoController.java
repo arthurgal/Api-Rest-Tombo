@@ -24,9 +24,15 @@ public class EquipamentoController {
     private EquipamentoRepository equipamentoRepository;
 
     @GetMapping
-    public List<EquipamentoDto> listaEquipamentos(){
-        var equipamentos = equipamentoRepository.findAll();
-        return EquipamentoDto.converte(equipamentos);
+    public List<EquipamentoDto> listaEquipamentos(SetorEquipamento busca){
+        if (busca == null){
+            var equipamentos = equipamentoRepository.findAll();
+            return EquipamentoDto.converte(equipamentos);
+        }else{
+            var equipamentos = equipamentoRepository.findBySetor(busca);
+            return EquipamentoDto.converte(equipamentos);
+        }
+
     }
 
 
@@ -61,7 +67,7 @@ public class EquipamentoController {
 
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable Long id){
+    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable("id") Long id){
         var equipamento = equipamentoRepository.findById(id);
         if(equipamento.isPresent()){
             return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
@@ -70,7 +76,7 @@ public class EquipamentoController {
     }
 
     @GetMapping("/tombo/{tombo}")
-    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable String tombo){
+    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable("tombo") String tombo){
         var equipamento = equipamentoRepository.findByTombo(tombo);
         if(equipamento.isPresent()){
             return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
@@ -82,6 +88,7 @@ public class EquipamentoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> deletaEquipamento(@PathVariable Long id){
+        //Esse tipo <Optional> pode ter ou não ter o equipamento com o Id procurado
         var equipamento = equipamentoRepository.findById(id);
         if(equipamento.isPresent()){
             equipamentoRepository.deleteById(id);

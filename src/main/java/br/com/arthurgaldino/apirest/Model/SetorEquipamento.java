@@ -4,5 +4,5 @@ public enum SetorEquipamento {
     LABTI,
     NAO_ALOCADO,
     OUTRO,
-    FOSENSE;
+    FORENSE;
 }

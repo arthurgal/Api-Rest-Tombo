@@ -12,10 +12,10 @@ public class Equipamento {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "tombo") @Length(min = 6, max = 6)
+    @Column(name = "tombo", nullable = false) @Length(min = 6, max = 6)
     private String tombo;
 
     @Column(name = "setor") @Enumerated(EnumType.STRING)
