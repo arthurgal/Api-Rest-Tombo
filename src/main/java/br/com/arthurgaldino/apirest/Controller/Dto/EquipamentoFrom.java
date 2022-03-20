@@ -33,6 +33,22 @@ public class EquipamentoFrom {
         this.tombo = tombo;
     }
 
+    public SetorEquipamento getSetor() {
+        return setor;
+    }
+
+    public void setSetor(SetorEquipamento setor) {
+        this.setor = setor;
+    }
+
+    public StatusEquipamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEquipamento status) {
+        this.status = status;
+    }
+
     public Equipamento converte() {
         return new Equipamento(nome, tombo, setor, status);
     }

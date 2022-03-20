@@ -3,7 +3,9 @@ package br.com.arthurgaldino.apirest.Service;
 import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaEquipamento;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoFrom;
+
 import br.com.arthurgaldino.apirest.Model.Equipamento;
+
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -36,10 +40,12 @@ public class EquipamentoService {
     }
 
     public ResponseEntity<EquipamentoDto> cadastraEquipamento(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
+
         var equipamentoBusca = equipamentoRepository.findByTombo(form.getTombo());
         if (equipamentoBusca.isPresent()){
             return ResponseEntity.unprocessableEntity().build();
         }
+
         var equipamento = form.converte();
         equipamentoRepository.save(equipamento);
 

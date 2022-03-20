@@ -27,6 +27,7 @@ public class EquipamentoController {
     @GetMapping
     public List<EquipamentoDto> listaEquipamentos(SetorEquipamento busca){
         return equipamentoService.listaEquipamentos(busca);
+
     }
 
 
@@ -46,12 +47,13 @@ public class EquipamentoController {
 
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable Long id){
+    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable("id") Long id){
         return equipamentoService.detalhaEquipamento(id);
     }
 
     @GetMapping("/tombo/{tombo}")
-    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable String tombo){
+
+    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable("tombo") String tombo){
         return equipamentoService.detalhaEquipamentoTombo(tombo);
     }
 
