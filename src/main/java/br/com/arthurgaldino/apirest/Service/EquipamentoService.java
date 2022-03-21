@@ -9,11 +9,16 @@ import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import org.springframework.web.util.UriComponentsBuilder;
@@ -28,12 +33,18 @@ public class EquipamentoService {
     @Autowired
     private EquipamentoRepository equipamentoRepository;
 
-    public List<EquipamentoDto> listaEquipamentos(SetorEquipamento busca){
+    public Page<EquipamentoDto> listaEquipamentos(@RequestParam(required = false) SetorEquipamento busca,
+                                                  @RequestParam(required = true) int pagina, @RequestParam(required = true) int qtd,
+                                                  @RequestParam String ordenacao){
+
+        Pageable paginacao = PageRequest.of(pagina, qtd, Sort.Direction.ASC, ordenacao);
+
+
         if (busca == null){
-            var equipamentos = equipamentoRepository.findAll();
+            var equipamentos = equipamentoRepository.findAll(paginacao);
             return EquipamentoDto.converte(equipamentos);
         }else{
-            var equipamentos = equipamentoRepository.findBySetor(busca);
+            var equipamentos = equipamentoRepository.findBySetor(busca, paginacao);
             return EquipamentoDto.converte(equipamentos);
         }
 

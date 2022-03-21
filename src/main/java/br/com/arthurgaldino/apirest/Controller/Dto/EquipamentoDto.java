@@ -4,6 +4,7 @@ import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,8 +34,8 @@ public class EquipamentoDto {
     public EquipamentoDto(Optional<Equipamento> equipamento) {
     }
 
-    public static List<EquipamentoDto> converte(List<Equipamento> equipamentos) {
-        return equipamentos.stream().map(EquipamentoDto::new).collect(Collectors.toList());
+    public static Page<EquipamentoDto> converte(Page<Equipamento> equipamentos) {
+        return equipamentos.map(EquipamentoDto::new);
     }
 
     public Long getId() {

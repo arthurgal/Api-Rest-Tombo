@@ -8,6 +8,7 @@ import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import br.com.arthurgaldino.apirest.Service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,8 @@ public class EquipamentoController {
     private EquipamentoService equipamentoService;
 
     @GetMapping
-    public List<EquipamentoDto> listaEquipamentos(SetorEquipamento busca){
-        return equipamentoService.listaEquipamentos(busca);
+    public Page<EquipamentoDto> listaEquipamentos(SetorEquipamento busca, int pagina, int qtd, String ordenacao){
+        return equipamentoService.listaEquipamentos(busca, pagina, qtd, ordenacao);
 
     }
 
