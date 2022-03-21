@@ -10,8 +10,8 @@ public class AtualizaEquipamento {
     private String nome;
     private String tombo;
     //não é boa pratica ter esse tipo de atributo em uma DTO
-    private SetorEquipamento setor;
-    private StatusEquipamento status;
+    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+    private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
 
     public String getNome() {
         return nome;
