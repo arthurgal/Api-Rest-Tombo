@@ -33,9 +33,7 @@ public class EquipamentoService {
     @Autowired
     private EquipamentoRepository equipamentoRepository;
 
-    public Page<EquipamentoDto> listaEquipamentos(@RequestParam(required = false) SetorEquipamento busca,
-                                                  @RequestParam(required = true) int pagina, @RequestParam(required = true) int qtd,
-                                                  @RequestParam String ordenacao){
+    public Page<EquipamentoDto> listaEquipamentos(SetorEquipamento busca, int pagina, int qtd, String ordenacao){
 
         Pageable paginacao = PageRequest.of(pagina, qtd, Sort.Direction.ASC, ordenacao);
 
@@ -50,7 +48,7 @@ public class EquipamentoService {
 
     }
 
-    public ResponseEntity<EquipamentoDto> cadastraEquipamento(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<EquipamentoDto> cadastraEquipamento(EquipamentoFrom form, UriComponentsBuilder uriBuilder){
 
         var equipamentoBusca = equipamentoRepository.findByTombo(form.getTombo());
         if (equipamentoBusca.isPresent()){
@@ -65,7 +63,7 @@ public class EquipamentoService {
         return ResponseEntity.created(uri).body(new EquipamentoDto(equipamento));
     }
 
-    public ResponseEntity<EquipamentoDto> atualizaEquipamento(@PathVariable Long id, @RequestBody @Valid AtualizaEquipamento form){
+    public ResponseEntity<EquipamentoDto> atualizaEquipamento(Long id, AtualizaEquipamento form){
 
         var equipamento = form.atualiza(id, equipamentoRepository);
 
@@ -73,7 +71,7 @@ public class EquipamentoService {
 
     }
 
-    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable("id") Long id){
+    public ResponseEntity<EquipamentoDto> detalhaEquipamento(Long id){
         var equipamento = equipamentoRepository.findById(id);
         if(equipamento.isPresent()){
             return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
@@ -81,7 +79,7 @@ public class EquipamentoService {
         return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable("tombo") String tombo){
+    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(String tombo){
         var equipamento = equipamentoRepository.findByTombo(tombo);
         if(equipamento.isPresent()){
             return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
@@ -89,7 +87,7 @@ public class EquipamentoService {
         return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<?> deletaEquipamento(@PathVariable Long id){
+    public ResponseEntity<?> deletaEquipamento(Long id){
         //Esse tipo <Optional> pode ter ou não ter o equipamento com o Id procurado
         var equipamento = equipamentoRepository.findById(id);
         if(equipamento.isPresent()){

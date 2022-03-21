@@ -26,7 +26,9 @@ public class EquipamentoController {
     private EquipamentoService equipamentoService;
 
     @GetMapping
-    public Page<EquipamentoDto> listaEquipamentos(SetorEquipamento busca, int pagina, int qtd, String ordenacao){
+    public Page<EquipamentoDto> listaEquipamentos(@RequestParam(required = false) SetorEquipamento busca,
+                                                  @RequestParam(required = true) int pagina, @RequestParam(required = true) int qtd,
+                                                  @RequestParam String ordenacao){
         return equipamentoService.listaEquipamentos(busca, pagina, qtd, ordenacao);
 
     }
