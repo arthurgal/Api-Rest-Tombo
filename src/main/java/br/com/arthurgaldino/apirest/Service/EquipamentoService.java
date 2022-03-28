@@ -71,13 +71,13 @@ public class EquipamentoService {
 
     }
 
-    public ResponseEntity<EquipamentoDto> detalhaEquipamento(Long id){
+/*    public ResponseEntity<EquipamentoDto> detalhaEquipamento(Long id){
         var equipamento = equipamentoRepository.findById(id);
         if(equipamento.isPresent()){
             return ResponseEntity.ok(new EquipamentoDto(equipamento.get()));
         }
         return ResponseEntity.notFound().build();
-    }
+    }*/
 
     public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(String tombo){
         var equipamento = equipamentoRepository.findByTombo(tombo);
@@ -88,7 +88,9 @@ public class EquipamentoService {
     }
 
     public ResponseEntity<?> deletaEquipamento(Long id){
+
         //Esse tipo <Optional> pode ter ou não ter o equipamento com o Id procurado
+
         var equipamento = equipamentoRepository.findById(id);
         if(equipamento.isPresent()){
             equipamentoRepository.deleteById(id);
