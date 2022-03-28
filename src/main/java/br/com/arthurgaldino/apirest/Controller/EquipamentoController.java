@@ -26,7 +26,7 @@ public class EquipamentoController {
     private EquipamentoService equipamentoService;
 
     @GetMapping
-    public Page<EquipamentoDto> listaEquipamentos(@RequestParam(required = false) SetorEquipamento busca,
+    public Page<EquipamentoDto> lista(@RequestParam(required = false) SetorEquipamento busca,
                                                   @RequestParam(required = true) int pagina, @RequestParam(required = true) int qtd,
                                                   @RequestParam String ordenacao){
         return equipamentoService.listaEquipamentos(busca, pagina, qtd, ordenacao);
@@ -36,34 +36,28 @@ public class EquipamentoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<EquipamentoDto> cadastraEquipamento(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<EquipamentoDto> cadastra(@RequestBody @Valid EquipamentoFrom form, UriComponentsBuilder uriBuilder){
         return equipamentoService.cadastraEquipamento(form, uriBuilder);
     }
 
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<EquipamentoDto> atualizaEquipamento(@PathVariable Long id, @RequestBody @Valid AtualizaEquipamento form){
+    public ResponseEntity<EquipamentoDto> atualiza(@PathVariable Long id, @RequestBody @Valid AtualizaEquipamento form){
         return equipamentoService.atualizaEquipamento(id, form);
 
     }
 
+    @GetMapping("/tombo")
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<EquipamentoDto> detalhaEquipamento(@PathVariable("id") Long id){
-        return equipamentoService.detalhaEquipamento(id);
-    }
-
-    @GetMapping("/tombo/{tombo}")
-
-    public ResponseEntity<EquipamentoDto> detalhaEquipamentoTombo(@PathVariable("tombo") String tombo){
+    public ResponseEntity<EquipamentoDto> detalhaTombo(@RequestParam(required = true) String tombo){
         return equipamentoService.detalhaEquipamentoTombo(tombo);
     }
 
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<?> deletaEquipamento(@PathVariable Long id){
+    public ResponseEntity<?> deleta(@PathVariable Long id){
         return equipamentoService.deletaEquipamento(id);
     }
 }
