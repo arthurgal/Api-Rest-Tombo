@@ -101,4 +101,8 @@ public class EquipamentoService {
 
     }
 
+    public List<Equipamento> listAll() {
+        return equipamentoRepository.findAll(Sort.by("Tombo").ascending());
+    }
+
 }

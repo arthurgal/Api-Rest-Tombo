@@ -5,8 +5,10 @@ import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoFrom;
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
+import br.com.arthurgaldino.apirest.Pdf.UserPDFExporter;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import br.com.arthurgaldino.apirest.Service.EquipamentoService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,6 +38,21 @@ public class EquipamentoController {
                                                   @RequestParam String ordenacao){
         return equipamentoService.listaEquipamentos(busca, pagina, qtd, ordenacao);
 
+    }
+
+    @GetMapping("/pdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Equipamento> listUsers = equipamentoService.listAll();
+
+        UserPDFExporter exporter = new UserPDFExporter(listUsers);
+        exporter.export(response);
     }
 
 

@@ -15,4 +15,6 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
     Optional<Equipamento> findByTombo(String tombo);
     Page<Equipamento> findBySetor(SetorEquipamento setor, Pageable paginacao);
 
+
+
 }
