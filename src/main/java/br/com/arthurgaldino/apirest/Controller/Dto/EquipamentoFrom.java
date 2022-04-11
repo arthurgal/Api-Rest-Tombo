@@ -16,6 +16,7 @@ public class EquipamentoFrom {
     private String tombo;
     private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
+    private String nomeUsuario;
 
     public String getNome() {
         return nome;
@@ -50,6 +51,6 @@ public class EquipamentoFrom {
     }
 
     public Equipamento converte() {
-        return new Equipamento(nome, tombo, setor, status);
+        return new Equipamento(nome, tombo, setor, status, nomeUsuario);
     }
 }

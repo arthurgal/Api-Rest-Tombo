@@ -40,7 +40,7 @@ public class EquipamentoController {
 
     }
 
-    @GetMapping("/pdf")
+    @GetMapping("relatorio/geral")
     public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());

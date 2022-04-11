@@ -24,15 +24,21 @@ public class Equipamento {
     @Column (name = "status") @Enumerated(EnumType.STRING)
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
 
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public Equipamento(){
 
     }
 
-    public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status) {
-        this.nome = nome;
-        this.tombo = tombo;
-        this.setor = setor;
-        this.status = status;
+    public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status, String nomeUsuario) {
+        nome = this.getNome();
+        tombo = this.getTombo();
+        setor = this.getSetor();
+        status = this.getStatus();
+        nomeUsuario = this.usuario.getNome();
     }
 
     public Long getId() {
@@ -73,5 +79,13 @@ public class Equipamento {
 
     public void setStatus(StatusEquipamento status) {
         this.status = status;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
