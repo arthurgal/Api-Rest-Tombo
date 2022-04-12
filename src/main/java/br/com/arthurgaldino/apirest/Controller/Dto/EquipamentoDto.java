@@ -21,6 +21,8 @@ public class EquipamentoDto {
     private String tombo;
     private SetorEquipamento setor;
     private StatusEquipamento status;
+    private String nomeUsuario;
+    private String matriculaUsuario;
 
     public EquipamentoDto(Equipamento e){
         this.id = e.getId();
@@ -28,6 +30,9 @@ public class EquipamentoDto {
         this.tombo = e.getTombo();
         this.setor = e.getSetor();
         this.status = e.getStatus();
+        this.nomeUsuario = e.getUsuario().getNomeUsuario();
+        this.matriculaUsuario = e.getUsuario().getMatriculaUsuario();
+
 
     }
 

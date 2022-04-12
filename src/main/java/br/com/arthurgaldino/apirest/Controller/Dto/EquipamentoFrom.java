@@ -17,6 +17,7 @@ public class EquipamentoFrom {
     private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
     private String nomeUsuario;
+    private String matriculaUsuario;
 
     public String getNome() {
         return nome;
@@ -50,7 +51,23 @@ public class EquipamentoFrom {
         this.status = status;
     }
 
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getMatriculaUsuario() {
+        return matriculaUsuario;
+    }
+
+    public void setMatriculaUsuario(String matriculaUsuario) {
+        this.matriculaUsuario = matriculaUsuario;
+    }
+
     public Equipamento converte() {
-        return new Equipamento(nome, tombo, setor, status, nomeUsuario);
+        return new Equipamento(nome, tombo, setor, status, nomeUsuario, matriculaUsuario);
     }
 }

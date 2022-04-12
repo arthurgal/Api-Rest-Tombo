@@ -12,10 +12,10 @@ public class Usuario {
     private Long id;
 
     @Column(name = "nomeServidor", nullable = false)
-    private String nome;
+    private String nomeUsuario;
 
     @Column(name = "matricula", nullable = false)
-    private String matricula;
+    private String matriculaUsuario;
 
     @OneToMany(mappedBy = "usuario")
     private List<Equipamento> equipamentos;
@@ -32,20 +32,20 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public String getMatriculaUsuario() {
+        return matriculaUsuario;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setMatriculaUsuario(String matriculaUsuario) {
+        this.matriculaUsuario = matriculaUsuario;
     }
 
     public List<Equipamento> getEquipamentos() {

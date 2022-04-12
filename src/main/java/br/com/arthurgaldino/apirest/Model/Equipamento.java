@@ -33,13 +33,24 @@ public class Equipamento {
 
     }
 
+    public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status, String  nomeUsuario, String  matriculaUsuario) {
+        this.nome = nome;
+        this.tombo = tombo;
+        this.setor = setor;
+        this.status = status;
+        this.usuario.setNomeUsuario(nomeUsuario);
+        this.usuario.setMatriculaUsuario(matriculaUsuario);
+
+    }
+
+    /*
     public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status, String nomeUsuario) {
         nome = this.getNome();
         tombo = this.getTombo();
         setor = this.getSetor();
         status = this.getStatus();
         nomeUsuario = this.usuario.getNome();
-    }
+    }*/
 
     public Long getId() {
         return id;
