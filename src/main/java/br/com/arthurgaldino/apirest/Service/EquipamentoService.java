@@ -8,6 +8,7 @@ import br.com.arthurgaldino.apirest.Model.Equipamento;
 
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
+import br.com.arthurgaldino.apirest.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +33,9 @@ public class EquipamentoService {
 
     @Autowired
     private EquipamentoRepository equipamentoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Page<EquipamentoDto> listaEquipamentos(SetorEquipamento busca, int pagina, int qtd, String ordenacao){
 

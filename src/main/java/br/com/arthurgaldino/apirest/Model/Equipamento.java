@@ -1,5 +1,7 @@
 package br.com.arthurgaldino.apirest.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -26,7 +28,8 @@ public class Equipamento {
 
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "id_usuario")
+    @JsonIgnore
     private Usuario usuario;
 
     public Equipamento(){
@@ -42,7 +45,6 @@ public class Equipamento {
         this.usuario.setMatriculaUsuario(matriculaUsuario);
 
     }
-
     /*
     public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status, String nomeUsuario) {
         nome = this.getNome();

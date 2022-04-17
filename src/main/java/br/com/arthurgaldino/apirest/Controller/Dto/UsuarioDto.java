@@ -1,29 +1,34 @@
-package br.com.arthurgaldino.apirest.Model;
+package br.com.arthurgaldino.apirest.Controller.Dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.arthurgaldino.apirest.Model.Equipamento;
+import br.com.arthurgaldino.apirest.Model.Usuario;
+import org.springframework.data.domain.Page;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Usuario {
+public class UsuarioDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "servidor", nullable = false)
     private String nomeUsuario;
 
-    @Column(name = "matricula", nullable = false)
     private String matriculaUsuario;
 
-    @OneToMany(mappedBy = "usuario")
-    @JsonIgnoreProperties("usuario")
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
 
+    public UsuarioDto(Usuario u) {
+        this.id = u.getId();
+        this.nomeUsuario = u.getNomeUsuario();
+        this.matriculaUsuario = u.getMatriculaUsuario();
+        this.equipamentos = u.getEquipamentos();
+    }
+
+    public static Page<UsuarioDto> converte(Page<Usuario> usuarios) {
+        return usuarios.map(UsuarioDto::new);
+    }
 
     public Long getId() {
         return id;
@@ -57,3 +62,4 @@ public class Usuario {
         this.equipamentos = equipamentos;
     }
 }
+
