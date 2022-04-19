@@ -37,6 +37,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{matricula}")
+    @Transactional
     public ResponseEntity<UsuarioDto> atualizaUsuario(@PathVariable String matricula, @RequestBody AtualizaUsuario form){
         return usuarioService.atualizaUsuario(matricula, form);
     }
