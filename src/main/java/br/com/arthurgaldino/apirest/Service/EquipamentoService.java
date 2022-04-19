@@ -62,7 +62,7 @@ public class EquipamentoService {
         var equipamento = form.converte();
         equipamentoRepository.save(equipamento);
 
-        URI uri = uriBuilder.path("equipamentos/{id}").buildAndExpand(equipamento.getId()).toUri();
+        URI uri = uriBuilder.path("/{id}").buildAndExpand(equipamento.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new EquipamentoDto(equipamento));
     }

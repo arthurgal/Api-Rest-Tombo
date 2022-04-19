@@ -20,9 +20,12 @@ public class Usuario {
     @Column(name = "matricula", nullable = false)
     private String matriculaUsuario;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("usuario")
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
+
+
+    public Usuario(){}
 
 
     public Long getId() {
