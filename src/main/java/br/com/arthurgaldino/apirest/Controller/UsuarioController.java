@@ -42,6 +42,11 @@ public class UsuarioController {
         return usuarioService.atualizaUsuario(matricula, form);
     }
 
+    @GetMapping("/{matricula}")
+    public ResponseEntity<UsuarioDto> detalhaUsuario(@PathVariable String matricula){
+        return usuarioService.detalhaUsuario(matricula);
+    }
+
     @DeleteMapping("/{matricula}")
     @Transactional
     public ResponseEntity<?> deletaUsuario(@PathVariable String matricula){

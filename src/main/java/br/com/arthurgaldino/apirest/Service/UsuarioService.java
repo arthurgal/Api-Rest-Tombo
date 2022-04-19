@@ -69,5 +69,14 @@ public class UsuarioService {
 
             return ResponseEntity.ok(new UsuarioDto(usuario));
     }
+
+    public ResponseEntity<UsuarioDto> detalhaUsuario(String matricula) {
+            var usuario = usuarioRepository.findByMatriculaUsuario(matricula);
+            if(usuario.isPresent()){
+                return ResponseEntity.ok(new UsuarioDto(usuario.get()));
+            }
+            return ResponseEntity.notFound().build();
+
+    }
 }
 
