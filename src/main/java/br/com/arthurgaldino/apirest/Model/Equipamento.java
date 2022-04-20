@@ -20,12 +20,8 @@ public class Equipamento {
     @Column(name = "tombo", nullable = false) @Length(min = 6, max = 6)
     private String tombo;
 
-    @Column(name = "setor") @Enumerated(EnumType.STRING)
-    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
-
     @Column (name = "status") @Enumerated(EnumType.STRING)
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
-
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
@@ -36,13 +32,12 @@ public class Equipamento {
 
     }
 
-    public Equipamento(String nome, String tombo, SetorEquipamento setor, StatusEquipamento status, String  nomeUsuario, String  matriculaUsuario) {
+    public Equipamento(String nome, String tombo, String  nomeUsuario, String  matriculaUsuario, StatusEquipamento status) {
         this.nome = nome;
         this.tombo = tombo;
-        this.setor = setor;
-        this.status = status;
         this.usuario.setNomeUsuario(nomeUsuario);
         this.usuario.setMatriculaUsuario(matriculaUsuario);
+        this.status = status;
 
     }
     /*
@@ -78,12 +73,8 @@ public class Equipamento {
         this.tombo = tombo;
     }
 
-    public SetorEquipamento getSetor() {
-        return setor;
-    }
-
-    public void setSetor(SetorEquipamento setor) {
-        this.setor = setor;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     public StatusEquipamento getStatus() {
@@ -92,10 +83,6 @@ public class Equipamento {
 
     public void setStatus(StatusEquipamento status) {
         this.status = status;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
     }
 
     public void setUsuario(Usuario usuario) {

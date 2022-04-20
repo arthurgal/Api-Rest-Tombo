@@ -4,9 +4,7 @@ import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaEquipamento;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoFrom;
 import br.com.arthurgaldino.apirest.Model.Equipamento;
-import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Pdf.UserPDFExporter;
-import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import br.com.arthurgaldino.apirest.Service.EquipamentoService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,7 +30,7 @@ public class EquipamentoController {
     private EquipamentoService equipamentoService;
 
     @GetMapping
-    public Page<EquipamentoDto> lista(@RequestParam(required = false) SetorEquipamento busca,
+    public Page<EquipamentoDto> lista(@RequestParam(required = false) String busca,
                                                   @RequestParam(required = true) int pagina, @RequestParam(required = true) int qtd,
                                                   @RequestParam String ordenacao){
         return equipamentoService.listaEquipamentos(busca, pagina, qtd, ordenacao);

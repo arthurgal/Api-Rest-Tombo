@@ -9,9 +9,7 @@ public class AtualizaEquipamento {
 
     private String nome;
     private String tombo;
-    //não é boa pratica ter esse tipo de atributo em uma DTO
-    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
-    private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
+    private StatusEquipamento status;
 
     public String getNome() {
         return nome;
@@ -29,14 +27,6 @@ public class AtualizaEquipamento {
         this.tombo = tombo;
     }
 
-    public SetorEquipamento getSetor() {
-        return setor;
-    }
-
-    public void setSetor(SetorEquipamento setor) {
-        this.setor = setor;
-    }
-
     public StatusEquipamento getStatus() {
         return status;
     }
@@ -49,7 +39,6 @@ public class AtualizaEquipamento {
         Equipamento equipamento = equipamentoRepository.getById(id);
         equipamento.setNome(this.nome);
         equipamento.setTombo(this.tombo);
-        equipamento.setSetor(this.setor);
         equipamento.setStatus(this.status);
 
         return equipamento;

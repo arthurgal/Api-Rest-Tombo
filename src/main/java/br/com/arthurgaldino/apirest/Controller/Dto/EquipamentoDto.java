@@ -15,24 +15,19 @@ import java.util.stream.Collectors;
 public class EquipamentoDto {
 
     private Long id;
-    @NotNull @NotEmpty
     private String nome;
-    @NotNull @NotEmpty @Length(min = 6, max = 6)
     private String tombo;
-    private SetorEquipamento setor;
+    /*private String nomeUsuario;
+    private String matriculaUsuario;*/
     private StatusEquipamento status;
-    private String nomeUsuario;
-    private String matriculaUsuario;
 
     public EquipamentoDto(Equipamento e){
         this.id = e.getId();
         this.nome = e.getNome();
         this.tombo = e.getTombo();
-        this.setor = e.getSetor();
+        /*this.nomeUsuario = e.getUsuario().getNomeUsuario();
+        this.matriculaUsuario = e.getUsuario().getMatriculaUsuario();*/
         this.status = e.getStatus();
-        this.nomeUsuario = e.getUsuario().getNomeUsuario();
-        this.matriculaUsuario = e.getUsuario().getMatriculaUsuario();
-
 
     }
 
@@ -67,13 +62,21 @@ public class EquipamentoDto {
         this.tombo = tombo;
     }
 
-    public SetorEquipamento getSetor() {
-        return setor;
+    /*public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setSetor(SetorEquipamento setor) {
-        this.setor = setor;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
+
+    public String getMatriculaUsuario() {
+        return matriculaUsuario;
+    }
+
+    public void setMatriculaUsuario(String matriculaUsuario) {
+        this.matriculaUsuario = matriculaUsuario;
+    }*/
 
     public StatusEquipamento getStatus() {
         return status;

@@ -20,13 +20,16 @@ public class Usuario {
     @Column(name = "matricula", nullable = false)
     private String matriculaUsuario;
 
+    @Column(name = "setor") @Enumerated(EnumType.STRING)
+    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("usuario")
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
 
 
     public Usuario(){}
-
 
     public Long getId() {
         return id;
@@ -51,6 +54,15 @@ public class Usuario {
     public void setMatriculaUsuario(String matriculaUsuario) {
         this.matriculaUsuario = matriculaUsuario;
     }
+
+    public SetorEquipamento getSetor() {
+        return setor;
+    }
+
+    public void setSetor(SetorEquipamento setor) {
+        this.setor = setor;
+    }
+
 
     public List<Equipamento> getEquipamentos() {
         return equipamentos;

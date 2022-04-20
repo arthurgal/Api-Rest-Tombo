@@ -37,7 +37,7 @@ public class EquipamentoService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Page<EquipamentoDto> listaEquipamentos(SetorEquipamento busca, int pagina, int qtd, String ordenacao){
+    public Page<EquipamentoDto> listaEquipamentos(String busca, int pagina, int qtd, String ordenacao){
 
         Pageable paginacao = PageRequest.of(pagina, qtd, Sort.Direction.ASC, ordenacao);
 
@@ -46,7 +46,7 @@ public class EquipamentoService {
             var equipamentos = equipamentoRepository.findAll(paginacao);
             return EquipamentoDto.converte(equipamentos);
         }else{
-            var equipamentos = equipamentoRepository.findBySetor(busca, paginacao);
+            var equipamentos = equipamentoRepository.findByTombo(busca, paginacao);
             return EquipamentoDto.converte(equipamentos);
         }
 
@@ -106,7 +106,7 @@ public class EquipamentoService {
     }
 
     public List<Equipamento> listAll() {
-        return equipamentoRepository.findAll(Sort.by("Setor").ascending());
+        return equipamentoRepository.findAll(Sort.by("Nome").ascending());
     }
 
 }

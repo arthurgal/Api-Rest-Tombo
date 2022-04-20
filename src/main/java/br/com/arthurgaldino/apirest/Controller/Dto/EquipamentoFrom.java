@@ -10,11 +10,8 @@ import javax.validation.constraints.NotNull;
 
 public class EquipamentoFrom {
 
-    @NotNull @NotEmpty
     private String nome;
-    @NotNull @NotEmpty @Length(min = 6, max = 6)
     private String tombo;
-    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
     private String nomeUsuario;
     private String matriculaUsuario;
@@ -35,13 +32,6 @@ public class EquipamentoFrom {
         this.tombo = tombo;
     }
 
-    public SetorEquipamento getSetor() {
-        return setor;
-    }
-
-    public void setSetor(SetorEquipamento setor) {
-        this.setor = setor;
-    }
 
     public StatusEquipamento getStatus() {
         return status;
@@ -68,6 +58,6 @@ public class EquipamentoFrom {
     }
 
     public Equipamento converte() {
-        return new Equipamento(nome, tombo, setor, status, nomeUsuario, matriculaUsuario);
+        return new Equipamento(nome, tombo, nomeUsuario, matriculaUsuario, status);
     }
 }

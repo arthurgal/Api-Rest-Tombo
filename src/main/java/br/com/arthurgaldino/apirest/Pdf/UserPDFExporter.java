@@ -49,8 +49,6 @@ public class UserPDFExporter {
             table.addCell(String.valueOf(equipamento.getId()));
             table.addCell(equipamento.getNome());
             table.addCell(equipamento.getTombo());
-            table.addCell(String.valueOf(equipamento.getSetor()));
-            table.addCell(String.valueOf(equipamento.getStatus()));
 
 
         }
