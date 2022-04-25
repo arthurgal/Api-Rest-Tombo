@@ -106,7 +106,7 @@ public class EquipamentoService {
     }
 
     public List<Equipamento> listAll() {
-        return equipamentoRepository.findAll(Sort.by("Nome").ascending());
+        return equipamentoRepository.findAll(Sort.by("usuarioSetor").ascending());
     }
 
 }

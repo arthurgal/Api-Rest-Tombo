@@ -27,9 +27,6 @@ public class UserPDFExporter {
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
         font.setColor(Color.WHITE);
 
-        cell.setPhrase(new Phrase("ID do Equipamento", font));
-
-        table.addCell(cell);
 
         cell.setPhrase(new Phrase("Nome do Equipamento", font));
         table.addCell(cell);
@@ -37,18 +34,23 @@ public class UserPDFExporter {
         cell.setPhrase(new Phrase("Tombo", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Setor", font));
+        cell.setPhrase(new Phrase("Status", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Status", font));
+        cell.setPhrase(new Phrase("Usuario", font));
+        table.addCell(cell);
+
+        cell.setPhrase(new Phrase("Setor do Usuario", font));
         table.addCell(cell);
     }
 
     private void writeTableData(PdfPTable table) {
         for (Equipamento equipamento : listaEquipamento) {
-            table.addCell(String.valueOf(equipamento.getId()));
             table.addCell(equipamento.getNome());
             table.addCell(equipamento.getTombo());
+            table.addCell(equipamento.getStatus().toString());
+            table.addCell(equipamento.getUsuario().getNomeUsuario());
+            table.addCell(equipamento.getUsuario().getSetor().toString());
 
 
         }
@@ -70,7 +72,7 @@ public class UserPDFExporter {
 
         PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f, 1.5f});
+        table.setWidths(new float[] {3.5f, 3.0f, 3.0f, 3.0f, 3.0f});
         table.setSpacingBefore(10);
 
         writeTableHeader(table);
