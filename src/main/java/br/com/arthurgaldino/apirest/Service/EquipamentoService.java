@@ -105,8 +105,14 @@ public class EquipamentoService {
 
     }
 
-    public List<Equipamento> listAll() {
-        return equipamentoRepository.findAll(Sort.by("usuarioSetor").ascending());
+    public List<Equipamento> listAll(String usuario) {
+        if (usuario == null){
+            return equipamentoRepository.findAll(Sort.by("usuarioSetor").ascending());
+        }
+        else{
+            return equipamentoRepository.findByUsuarioNomeUsuario(usuario);
+        }
+
     }
 
 }

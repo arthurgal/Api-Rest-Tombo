@@ -16,5 +16,5 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
     Page<Equipamento> findByTombo(String tombo, Pageable pageable);
 
 
-
+    List<Equipamento> findByUsuarioNomeUsuario(String filtro);
 }

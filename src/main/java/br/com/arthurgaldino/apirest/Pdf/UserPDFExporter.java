@@ -1,15 +1,16 @@
 package br.com.arthurgaldino.apirest.Pdf;
 
-import java.awt.Color;
-import java.io.IOException;
-import java.util.List;
+import br.com.arthurgaldino.apirest.Model.Equipamento;
+import com.lowagie.text.Font;
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 
 import javax.servlet.http.HttpServletResponse;
-
-import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
-import br.com.arthurgaldino.apirest.Model.Equipamento;
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.*;
+import java.awt.*;
+import java.io.IOException;
+import java.util.List;
 
 
 public class UserPDFExporter {
@@ -22,7 +23,7 @@ public class UserPDFExporter {
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
         cell.setBackgroundColor(Color.BLUE);
-        cell.setPadding(5);
+        cell.setPadding(8);
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
         font.setColor(Color.WHITE);
@@ -73,7 +74,7 @@ public class UserPDFExporter {
         PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100f);
         table.setWidths(new float[] {3.5f, 3.0f, 3.0f, 3.0f, 3.0f});
-        table.setSpacingBefore(10);
+        table.setSpacingBefore(20);
 
         writeTableHeader(table);
         writeTableData(table);

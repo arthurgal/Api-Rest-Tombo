@@ -38,7 +38,7 @@ public class EquipamentoController {
     }
 
     @GetMapping("relatorio/geral")
-    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+    public void exportToPDF(HttpServletResponse response, @RequestParam(required = false) String usuario) throws DocumentException, IOException {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
 
@@ -46,7 +46,7 @@ public class EquipamentoController {
         String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        List<Equipamento> listUsers = equipamentoService.listAll();
+        List<Equipamento> listUsers = equipamentoService.listAll(usuario);
 
         UserPDFExporter exporter = new UserPDFExporter(listUsers);
         exporter.export(response);
