@@ -1,6 +1,7 @@
 package br.com.arthurgaldino.apirest.Controller.Dto.atualizacao;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
+import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Model.Usuario;
 import br.com.arthurgaldino.apirest.Repository.UsuarioRepository;
 
@@ -15,6 +16,9 @@ public class AtualizaUsuario {
     private String nomeUsuario;
     @NotEmpty @NotNull
     private String matriculaUsuario;
+
+    private SetorEquipamento setorEquipamento;
+
 
     public String getNomeUsuario() {
         return nomeUsuario;
@@ -32,10 +36,19 @@ public class AtualizaUsuario {
         this.matriculaUsuario = matriculaUsuario;
     }
 
+    public SetorEquipamento getSetorEquipamento() {
+        return setorEquipamento;
+    }
+
+    public void setSetorEquipamento(SetorEquipamento setorEquipamento) {
+        this.setorEquipamento = setorEquipamento;
+    }
+
     public Usuario atualiza(String matricula, UsuarioRepository usuarioRepository){
         Usuario usuario = usuarioRepository.getByMatriculaUsuario(matricula);
         usuario.setNomeUsuario(this.nomeUsuario);
         usuario.setMatriculaUsuario(this.matriculaUsuario);
+        usuario.setSetor(this.setorEquipamento);
 
         return usuario;
     }
