@@ -13,8 +13,6 @@ import java.util.List;
 
 public class UsuarioDto {
 
-    private Long id;
-
     private String nomeUsuario;
 
     private String matriculaUsuario;
@@ -24,7 +22,6 @@ public class UsuarioDto {
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
 
     public UsuarioDto(Usuario u) {
-        this.id = u.getId();
         this.nomeUsuario = u.getNomeUsuario();
         this.matriculaUsuario = u.getMatriculaUsuario();
         this.equipamentos = u.getEquipamentos();
@@ -33,14 +30,6 @@ public class UsuarioDto {
 
     public static Page<UsuarioDto> converte(Page<Usuario> usuarios) {
         return usuarios.map(UsuarioDto::new);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNomeUsuario() {

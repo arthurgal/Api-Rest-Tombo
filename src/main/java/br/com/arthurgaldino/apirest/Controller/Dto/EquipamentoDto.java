@@ -14,15 +14,14 @@ import java.util.stream.Collectors;
 
 public class EquipamentoDto {
 
-    private Long id;
     private String nome;
+
     private String tombo;
     /*private String nomeUsuario;
     private String matriculaUsuario;*/
     private StatusEquipamento status;
 
     public EquipamentoDto(Equipamento e){
-        this.id = e.getId();
         this.nome = e.getNome();
         this.tombo = e.getTombo();
         /*this.nomeUsuario = e.getUsuario().getNomeUsuario();
@@ -36,14 +35,6 @@ public class EquipamentoDto {
 
     public static Page<EquipamentoDto> converte(Page<Equipamento> equipamentos) {
         return equipamentos.map(EquipamentoDto::new);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {

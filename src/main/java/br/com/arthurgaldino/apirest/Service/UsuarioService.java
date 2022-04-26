@@ -3,10 +3,12 @@ package br.com.arthurgaldino.apirest.Service;
 import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaUsuario;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
 import br.com.arthurgaldino.apirest.Controller.Dto.UsuarioDto;
+import br.com.arthurgaldino.apirest.Controller.Dto.UsuarioFrom;
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.Usuario;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import br.com.arthurgaldino.apirest.Repository.UsuarioRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,18 +45,20 @@ public class UsuarioService {
 
         }
 
-    public ResponseEntity<Usuario> cadastraUsuario(Usuario u, UriComponentsBuilder uriBuilder) {
-
+    public ResponseEntity<UsuarioDto> cadastraUsuario(UsuarioFrom u, UriComponentsBuilder uriBuilder) {
+            var usuarioFinal = new Usuario();
             var usuarioBusca = usuarioRepository.findByMatriculaUsuario(u.getMatriculaUsuario());
             if(usuarioBusca.isPresent()){
                 return ResponseEntity.unprocessableEntity().build();
             }
-            Usuario u2 = usuarioRepository.save(u);
+            BeanUtils.copyProperties(u, usuarioFinal);
+
+            Usuario u2 = usuarioRepository.save(usuarioFinal);
             u2.getEquipamentos().forEach(e -> e.setUsuario(u2));
             equipamentoRepository.saveAll(u2.getEquipamentos());
             URI uri = uriBuilder.path("/{id}").buildAndExpand(u2.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(u2);
+        return ResponseEntity.created(uri).body(new UsuarioDto(u2));
     }
 
     public ResponseEntity<?> deletaUsuario(String matricula){

@@ -2,6 +2,7 @@ package br.com.arthurgaldino.apirest.Controller;
 
 import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaUsuario;
 import br.com.arthurgaldino.apirest.Controller.Dto.UsuarioDto;
+import br.com.arthurgaldino.apirest.Controller.Dto.UsuarioFrom;
 import br.com.arthurgaldino.apirest.Model.Usuario;
 import br.com.arthurgaldino.apirest.Service.UsuarioService;
 import com.lowagie.text.DocumentException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -36,7 +38,7 @@ public class UsuarioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Usuario> cadastraUsuario(@RequestBody Usuario usuario, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<UsuarioDto> cadastraUsuario(@RequestBody @Valid UsuarioFrom usuario, UriComponentsBuilder uriBuilder){
         return usuarioService.cadastraUsuario(usuario, uriBuilder);
 
     }

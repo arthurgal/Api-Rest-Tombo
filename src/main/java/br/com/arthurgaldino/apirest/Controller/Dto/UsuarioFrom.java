@@ -1,44 +1,25 @@
-package br.com.arthurgaldino.apirest.Model;
+package br.com.arthurgaldino.apirest.Controller.Dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.arthurgaldino.apirest.Model.Equipamento;
+import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import org.hibernate.validator.constraints.UniqueElements;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Usuario {
+public class UsuarioFrom {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @Column(name = "servidor", nullable = false)
+    @NotEmpty @NotNull
     private String nomeUsuario;
 
-    @Column(name = "matricula", nullable = false, unique = true)
+    @NotEmpty @NotNull
     private String matriculaUsuario;
 
-    @Column(name = "setor") @Enumerated(EnumType.STRING)
     private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
 
-
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("usuario")
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
-
-
-    public Usuario(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNomeUsuario() {
         return nomeUsuario;
@@ -63,7 +44,6 @@ public class Usuario {
     public void setSetor(SetorEquipamento setor) {
         this.setor = setor;
     }
-
 
     public List<Equipamento> getEquipamentos() {
         return equipamentos;
