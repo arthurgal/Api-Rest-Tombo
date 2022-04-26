@@ -17,7 +17,7 @@ public class Equipamento {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "tombo", nullable = false) @Length(min = 6, max = 6)
+    @Column(name = "tombo", nullable = false, unique = true) @Length(min = 6, max = 6)
     private String tombo;
 
     @Column (name = "status") @Enumerated(EnumType.STRING)

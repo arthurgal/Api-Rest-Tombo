@@ -1,13 +1,16 @@
-package br.com.arthurgaldino.apirest.Controller.Dto;
+package br.com.arthurgaldino.apirest.Controller.Dto.atualizacao;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
+import org.springframework.lang.Nullable;
 
 public class AtualizaEquipamento {
 
+    @Nullable
     private String nome;
+    @Nullable
     private String tombo;
     private StatusEquipamento status;
 

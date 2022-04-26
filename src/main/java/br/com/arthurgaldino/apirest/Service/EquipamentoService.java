@@ -1,8 +1,8 @@
 package br.com.arthurgaldino.apirest.Service;
 
-import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaEquipamento;
+import br.com.arthurgaldino.apirest.Controller.Dto.atualizacao.AtualizaEquipamento;
 import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoDto;
-import br.com.arthurgaldino.apirest.Controller.Dto.EquipamentoFrom;
+import br.com.arthurgaldino.apirest.Controller.Dto.from.EquipamentoFrom;
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Repository.EquipamentoRepository;
 import br.com.arthurgaldino.apirest.Repository.UsuarioRepository;

@@ -1,8 +1,8 @@
 package br.com.arthurgaldino.apirest.Controller;
 
-import br.com.arthurgaldino.apirest.Controller.Dto.AtualizaUsuario;
+import br.com.arthurgaldino.apirest.Controller.Dto.atualizacao.AtualizaUsuario;
 import br.com.arthurgaldino.apirest.Controller.Dto.UsuarioDto;
-import br.com.arthurgaldino.apirest.Controller.Dto.UsuarioFrom;
+import br.com.arthurgaldino.apirest.Controller.Dto.from.UsuarioFrom;
 import br.com.arthurgaldino.apirest.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,7 +37,7 @@ public class UsuarioController {
 
     @PutMapping("/{matricula}")
     @Transactional
-    public ResponseEntity<UsuarioDto> atualizaUsuario(@PathVariable String matricula, @RequestBody AtualizaUsuario form){
+    public ResponseEntity<UsuarioDto> atualizaUsuario(@PathVariable String matricula, @RequestBody @Valid AtualizaUsuario form){
         return usuarioService.atualizaUsuario(matricula, form);
     }
 

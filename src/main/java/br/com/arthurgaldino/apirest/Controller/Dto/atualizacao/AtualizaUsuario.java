@@ -1,15 +1,19 @@
-package br.com.arthurgaldino.apirest.Controller.Dto;
+package br.com.arthurgaldino.apirest.Controller.Dto.atualizacao;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.Usuario;
 import br.com.arthurgaldino.apirest.Repository.UsuarioRepository;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AtualizaUsuario {
 
+    @NotEmpty @NotNull
     private String nomeUsuario;
+    @NotEmpty @NotNull
     private String matriculaUsuario;
 
     public String getNomeUsuario() {

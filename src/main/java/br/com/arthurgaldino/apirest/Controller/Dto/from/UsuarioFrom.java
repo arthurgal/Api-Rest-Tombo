@@ -1,4 +1,4 @@
-package br.com.arthurgaldino.apirest.Controller.Dto;
+package br.com.arthurgaldino.apirest.Controller.Dto.from;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;

@@ -1,14 +1,19 @@
-package br.com.arthurgaldino.apirest.Controller.Dto;
+package br.com.arthurgaldino.apirest.Controller.Dto.from;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
+import org.springframework.lang.Nullable;
 
 public class EquipamentoFrom {
 
+    @Nullable
     private String nome;
+    @Nullable
     private String tombo;
     private StatusEquipamento status = StatusEquipamento.FUNCIONANDO;
+    @Nullable
     private String nomeUsuario;
+    @Nullable
     private String matriculaUsuario;
 
     public String getNome() {
