@@ -21,7 +21,7 @@ public class Usuario {
     private String matriculaUsuario;
 
     @Column(name = "setor") @Enumerated(EnumType.STRING)
-    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+    private Setor setor = Setor.NAO_ALOCADO;
 
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -55,11 +55,11 @@ public class Usuario {
         this.matriculaUsuario = matriculaUsuario;
     }
 
-    public SetorEquipamento getSetor() {
+    public Setor getSetor() {
         return setor;
     }
 
-    public void setSetor(SetorEquipamento setor) {
+    public void setSetor(Setor setor) {
         this.setor = setor;
     }
 

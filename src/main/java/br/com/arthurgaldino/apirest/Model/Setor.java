@@ -1,6 +1,6 @@
 package br.com.arthurgaldino.apirest.Model;
 
-public enum SetorEquipamento {
+public enum Setor {
     LABTI,
     NAO_ALOCADO,
     OUTRO,

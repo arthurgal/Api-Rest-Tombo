@@ -1,7 +1,7 @@
 package br.com.arthurgaldino.apirest.Controller.Dto.from;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
-import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
+import br.com.arthurgaldino.apirest.Model.Setor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -16,7 +16,7 @@ public class UsuarioFrom {
     @NotEmpty @NotNull
     private String matriculaUsuario;
 
-    private SetorEquipamento setor = SetorEquipamento.NAO_ALOCADO;
+    private Setor setor = Setor.NAO_ALOCADO;
 
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
 
@@ -36,11 +36,11 @@ public class UsuarioFrom {
         this.matriculaUsuario = matriculaUsuario;
     }
 
-    public SetorEquipamento getSetor() {
+    public Setor getSetor() {
         return setor;
     }
 
-    public void setSetor(SetorEquipamento setor) {
+    public void setSetor(Setor setor) {
         this.setor = setor;
     }
 

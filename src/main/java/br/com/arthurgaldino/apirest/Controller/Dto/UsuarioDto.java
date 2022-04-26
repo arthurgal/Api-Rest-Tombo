@@ -1,7 +1,7 @@
 package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
-import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
+import br.com.arthurgaldino.apirest.Model.Setor;
 import br.com.arthurgaldino.apirest.Model.Usuario;
 import org.springframework.data.domain.Page;
 
@@ -14,7 +14,7 @@ public class UsuarioDto {
 
     private String matriculaUsuario;
 
-    private SetorEquipamento setorEquipamento = SetorEquipamento.NAO_ALOCADO;
+    private Setor setor = Setor.NAO_ALOCADO;
 
     private List<Equipamento> equipamentos = new ArrayList<Equipamento>();
 
@@ -22,7 +22,7 @@ public class UsuarioDto {
         this.nomeUsuario = u.getNomeUsuario();
         this.matriculaUsuario = u.getMatriculaUsuario();
         this.equipamentos = u.getEquipamentos();
-        this.setorEquipamento = u.getSetor();
+        this.setor = u.getSetor();
     }
 
     public static Page<UsuarioDto> converte(Page<Usuario> usuarios) {
@@ -49,12 +49,12 @@ public class UsuarioDto {
         return equipamentos;
     }
 
-    public SetorEquipamento getSetorEquipamento() {
-        return setorEquipamento;
+    public Setor getSetor() {
+        return setor;
     }
 
-    public void setSetorEquipamento(SetorEquipamento setorEquipamento) {
-        this.setorEquipamento = setorEquipamento;
+    public void setSetor(Setor setorEquipamento) {
+        this.setor = setorEquipamento;
     }
 
     public void setEquipamentos(List<Equipamento> equipamentos) {
