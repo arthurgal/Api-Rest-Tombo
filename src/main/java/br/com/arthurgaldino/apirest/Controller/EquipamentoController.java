@@ -67,9 +67,9 @@ public class EquipamentoController {
 
     }
 
-    @GetMapping("/tombo")
+    @GetMapping("/{tombo}")
 
-    public ResponseEntity<EquipamentoDto> detalhaTombo(@RequestParam(required = true) String tombo){
+    public ResponseEntity<EquipamentoDto> detalhaTombo(@PathVariable String tombo){
         return equipamentoService.detalhaEquipamentoTombo(tombo);
     }
 

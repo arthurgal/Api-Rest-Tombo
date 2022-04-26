@@ -1,12 +1,7 @@
 package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
-import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 public class EquipamentoFrom {
 

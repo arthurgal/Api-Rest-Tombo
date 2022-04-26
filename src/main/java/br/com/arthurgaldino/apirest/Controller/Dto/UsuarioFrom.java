@@ -2,7 +2,6 @@ package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
 import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

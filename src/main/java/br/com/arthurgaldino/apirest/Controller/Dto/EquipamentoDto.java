@@ -1,16 +1,10 @@
 package br.com.arthurgaldino.apirest.Controller.Dto;
 
 import br.com.arthurgaldino.apirest.Model.Equipamento;
-import br.com.arthurgaldino.apirest.Model.SetorEquipamento;
 import br.com.arthurgaldino.apirest.Model.StatusEquipamento;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.domain.Page;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class EquipamentoDto {
 
