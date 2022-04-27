@@ -37,8 +37,8 @@ public class AtualizaEquipamento {
         this.status = status;
     }
 
-    public Equipamento atualiza(Long id, EquipamentoRepository equipamentoRepository) {
-        Equipamento equipamento = equipamentoRepository.getById(id);
+    public Equipamento atualiza(String tombo, EquipamentoRepository equipamentoRepository) {
+        Equipamento equipamento = equipamentoRepository.getByTombo(tombo);
         equipamento.setNome(this.nome);
         equipamento.setTombo(this.tombo);
         equipamento.setStatus(this.status);

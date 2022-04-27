@@ -60,10 +60,10 @@ public class EquipamentoController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/{tombo}")
     @Transactional
-    public ResponseEntity<EquipamentoDto> atualiza(@PathVariable Long id, @RequestBody @Valid AtualizaEquipamento form){
-        return equipamentoService.atualizaEquipamento(id, form);
+    public ResponseEntity<EquipamentoDto> atualiza(@PathVariable String tombo, @RequestBody @Valid AtualizaEquipamento form){
+        return equipamentoService.atualizaEquipamento(tombo, form);
 
     }
 
@@ -74,9 +74,9 @@ public class EquipamentoController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{tombo}")
     @Transactional
-    public ResponseEntity<?> deleta(@PathVariable Long id){
-        return equipamentoService.deletaEquipamento(id);
+    public ResponseEntity<?> deleta(@PathVariable String tombo){
+        return equipamentoService.deletaEquipamento(tombo);
     }
 }

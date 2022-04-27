@@ -15,4 +15,7 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
 
 
     List<Equipamento> findByUsuarioNomeUsuario(String filtro);
+
+    Equipamento getByTombo(String tombo);
+
 }

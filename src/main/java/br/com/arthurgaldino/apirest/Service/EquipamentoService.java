@@ -57,9 +57,9 @@ public class EquipamentoService {
         return ResponseEntity.created(uri).body(new EquipamentoDto(equipamento));
     }
 
-    public ResponseEntity<EquipamentoDto> atualizaEquipamento(Long id, AtualizaEquipamento form){
+    public ResponseEntity<EquipamentoDto> atualizaEquipamento(String tombo, AtualizaEquipamento form){
 
-        var equipamento = form.atualiza(id, equipamentoRepository);
+        var equipamento = form.atualiza(tombo, equipamentoRepository);
 
         return ResponseEntity.ok(new EquipamentoDto(equipamento));
 
@@ -81,13 +81,13 @@ public class EquipamentoService {
         return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<?> deletaEquipamento(Long id){
+    public ResponseEntity<?> deletaEquipamento(String tombo){
 
         //Esse tipo <Optional> pode ter ou não ter o equipamento com o Id procurado
 
-        var equipamento = equipamentoRepository.findById(id);
+        var equipamento = equipamentoRepository.findByTombo(tombo);
         if(equipamento.isPresent()){
-            equipamentoRepository.deleteById(id);
+            equipamentoRepository.deleteById(equipamento.get().getId());
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
